@@ -14,10 +14,11 @@ vim.keymap.set("n", "<C-;>", ":bprev<CR>", { silent = true })
 vim.keymap.set("n", "<C-'>", ":bnext<CR>", { silent = true })
 vim.keymap.set("n", "<leader>v", ":vsplit<CR>", { silent = true })
 
+vim.keymap.set("i", "jk", '<Esc>')
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>")
 vim.wo.number = true
 vim.o.clipboard = "unnamedplus"
-
+vim.o.hlsearch = false
 -- Enable break indent
 vim.o.breakindent = true
 
@@ -45,6 +46,7 @@ vim.o.termguicolors = true
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
+
 -- Remap for dealing with word wrap
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -67,7 +69,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 local auto_save = vim.api.nvim_create_augroup("AutoSave", { clear = true })
-vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave" }, {
+vim.api.nvim_create_autocmd({ "BufLeave" }, {
 	group = auto_save,
 	pattern = "*",
 	callback = function()
