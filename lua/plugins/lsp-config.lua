@@ -32,6 +32,13 @@ return {
 			local lspconfig = require("lspconfig")
 			lspconfig.tsserver.setup({
 				capabilities = capabilities,
+				init_options = {
+			    preferences = {
+						includeCompletionsForModuleExports = true,
+			      includeCompletionsForImportStatements = true,
+			      importModuleSpecifierPreference = "non-relative",
+			    },
+			  },
 			})
 			lspconfig.html.setup({
 				capabilities = capabilities,
